@@ -11,6 +11,8 @@ import { AuthMessageComponent } from './auth-message.component';
 })
 export class AuthFormComponent implements OnInit, AfterContentInit, AfterViewInit {
   showMessage: boolean;
+
+  @ViewChild('email') email: ElementRef;
   
   // @ContentChild(AuthRememberComponent) remember: AuthRememberComponent;
   @ContentChildren(AuthRememberComponent) remember: QueryList<AuthRememberComponent> ;
@@ -52,6 +54,8 @@ export class AuthFormComponent implements OnInit, AfterContentInit, AfterViewIni
 
       this.cd.detectChanges();
     }
+
+    console.log(this.email);
     
   }
   
