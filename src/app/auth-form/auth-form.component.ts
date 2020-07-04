@@ -55,7 +55,10 @@ export class AuthFormComponent implements OnInit, AfterContentInit, AfterViewIni
       this.cd.detectChanges();
     }
 
-    console.log(this.email);
+    // console.log(this.email.nativeElement);
+    this.email.nativeElement.setAttribute('placeholder', 'Enter your email address');
+    this.email.nativeElement.focus();
+    this.email.nativeElement.classList.add('email');
     
   }
   
