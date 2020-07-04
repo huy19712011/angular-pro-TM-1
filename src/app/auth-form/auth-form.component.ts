@@ -1,8 +1,9 @@
-import { Component, OnInit, Output, EventEmitter, ContentChild, AfterContentInit, ContentChildren, QueryList, ViewChild, ViewChildren, AfterViewInit, Input, ElementRef, ViewContainerRef, AfterViewChecked, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ContentChild, AfterContentInit, ContentChildren, QueryList, ViewChild, ViewChildren, AfterViewInit, Input, ElementRef, ViewContainerRef, AfterViewChecked, ChangeDetectorRef, Renderer2 } from '@angular/core';
 
 import { User } from './auth-form.interface';
 import { AuthRememberComponent } from './auth-remember.component';
 import { AuthMessageComponent } from './auth-message.component';
+import { applySourceSpanToExpressionIfNeeded } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'auth-form',
@@ -26,7 +27,7 @@ export class AuthFormComponent implements OnInit, AfterContentInit, AfterViewIni
   
   @Output() submitted: EventEmitter<User> = new EventEmitter<User>();
   
-  constructor(private cd: ChangeDetectorRef) { }
+  constructor(private cd: ChangeDetectorRef, private renderer: Renderer2) { }
   
   ngOnInit(): void {
   }
@@ -56,10 +57,17 @@ export class AuthFormComponent implements OnInit, AfterContentInit, AfterViewIni
     }
 
     // console.log(this.email.nativeElement);
-    this.email.nativeElement.setAttribute('placeholder', 'Enter your email address');
-    this.email.nativeElement.focus();
-    this.email.nativeElement.classList.add('email');
-    
+
+    // using nativeElement
+    // this.email.nativeElement.setAttribute('placeholder', 'Enter your email address');
+    // this.email.nativeElement.focus();
+    // this.email.nativeElement.classList.add('email');
+
+    // using Renderer2
+    this.renderer.setAttribute(this.email.nativeElement, 'placeholder', 'Enter your email address');
+    this.renderer.addClass(this.email.nativeElement, 'email');
+    // this.renderer.selectRootElement('.email').focus(); // select DOM with class 'email'
+    this.renderer.selectRootElement('#email').focus(); // select DOM with id = 'email'
   }
   
   
