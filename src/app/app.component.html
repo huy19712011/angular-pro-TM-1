@@ -1,10 +1,11 @@
 <div>
-  <ng-container
-  [ngTemplateOutlet]="tmpl"
+  <ng-container 
+  [ngTemplateOutlet]="tmpl" 
+  [ngTemplateOutletContext]="ctx"
   >
-
   </ng-container>
+  
   <ng-template #tmpl let-name let-location="location">
-    Todd Moto: England, UK
+    {{ name }}: {{ location }}
   </ng-template>
 </div>

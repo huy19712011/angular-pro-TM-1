@@ -9,35 +9,11 @@ import { AuthFormComponent } from './auth-form/auth-form.component';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements AfterContentInit {
+export class AppComponent {
 
-  component: ComponentRef<AuthFormComponent>;
+  ctx = {
+    $implicit: 'Todd Moto',
+    location: 'England, UK'
+  };
   
-  @ViewChild('entry', { static: true, read: ViewContainerRef }) entry: ViewContainerRef;
-
-  @ViewChild('tmpl', {static: true}) tmpl: TemplateRef<any>;
-
-  constructor(
-    private resolver: ComponentFactoryResolver,
-  ) {}
-
-  ngAfterContentInit() {
-    this.entry.createEmbeddedView(this.tmpl, {
-      $implicit: 'Moto Todd',
-      location: 'England, UK'
-    });
-    
-  }
-  
-  destroyComponent() {
-    this.component.destroy();
-  }
-  
-  moveComponent() {
-    this.entry.move(this.component.hostView, 1);
-  }
-  
-  loginUser(user: User) {
-    console.log('Login: ', user);
-  }
 }
