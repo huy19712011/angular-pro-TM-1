@@ -21,7 +21,8 @@ export class AppComponent implements AfterContentInit {
 
   ngAfterContentInit() {
     const authFormFactory = this.resolver.resolveComponentFactory(AuthFormComponent);
-    this.component = this.entry.createComponent(authFormFactory);
+    this.entry.createComponent(authFormFactory);
+    this.component = this.entry.createComponent(authFormFactory, 0);
     // console.log(component.instance);
     this.component.instance.title = 'Create account';
     
@@ -31,6 +32,10 @@ export class AppComponent implements AfterContentInit {
   
   destroyComponent() {
     this.component.destroy();
+  }
+  
+  moveComponent() {
+    this.entry.move(this.component.hostView, 1);
   }
   
   loginUser(user: User) {
