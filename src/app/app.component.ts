@@ -1,19 +1,32 @@
-import { Component, ViewChild, ViewContainerRef, ComponentFactoryResolver, AfterContentInit, ComponentRef, TemplateRef } from '@angular/core';
-
-import { User } from './auth-form/auth-form.interface';
-
-import { AuthFormComponent } from './auth-form/auth-form.component';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default,
 })
 export class AppComponent {
-
-  ctx = {
-    $implicit: 'Todd Moto',
-    location: 'England, UK'
+  user: any = {
+    name: 'Mark Hoppus',
+    age: 44,
+    location: 'California',
   };
+
+  addProp() {
+    this.user.email = 'blink@blink-182.net';
+  }
+
+  changeName() {
+    this.user.name = 'Travis Barker';
+  }
+
+  changeUser() {
+    this.user = {
+      name: 'Tom Delonge',
+      age: 41,
+      location: 'California'
+    };
+  }
   
 }
