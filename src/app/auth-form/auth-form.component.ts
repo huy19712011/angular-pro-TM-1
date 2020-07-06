@@ -3,7 +3,6 @@ import { Component, OnInit, Output, EventEmitter, ContentChild, AfterContentInit
 import { User } from './auth-form.interface';
 import { AuthRememberComponent } from './auth-remember.component';
 import { AuthMessageComponent } from './auth-message.component';
-import { applySourceSpanToExpressionIfNeeded } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'auth-form',
@@ -11,6 +10,8 @@ import { applySourceSpanToExpressionIfNeeded } from '@angular/compiler/src/outpu
   styleUrls: ['./auth-form.component.scss']
 })
 export class AuthFormComponent implements OnInit, AfterContentInit, AfterViewInit {
+  title = 'Login';
+
   showMessage: boolean;
 
   @ViewChild('email') email: ElementRef;
@@ -64,10 +65,10 @@ export class AuthFormComponent implements OnInit, AfterContentInit, AfterViewIni
     // this.email.nativeElement.classList.add('email');
 
     // using Renderer2
-    this.renderer.setAttribute(this.email.nativeElement, 'placeholder', 'Enter your email address');
-    this.renderer.addClass(this.email.nativeElement, 'email');
-    // this.renderer.selectRootElement('.email').focus(); // select DOM with class 'email'
-    this.renderer.selectRootElement('#email').focus(); // select DOM with id = 'email'
+    // this.renderer.setAttribute(this.email.nativeElement, 'placeholder', 'Enter your email address');
+    // this.renderer.addClass(this.email.nativeElement, 'email');
+    // // this.renderer.selectRootElement('.email').focus(); // select DOM with class 'email'
+    // this.renderer.selectRootElement('#email').focus(); // select DOM with id = 'email'
   }
   
   
