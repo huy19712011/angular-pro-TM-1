@@ -22,7 +22,10 @@ export class AppComponent implements AfterContentInit {
   ) {}
 
   ngAfterContentInit() {
-    this.entry.createEmbeddedView(this.tmpl);
+    this.entry.createEmbeddedView(this.tmpl, {
+      $implicit: 'Moto Todd',
+      location: 'England, UK'
+    });
     
   }
   

@@ -1,6 +1,6 @@
 <div>
   <div #entry></div>
-  <ng-template #tmpl>
-    Todd Moto: England, UK
+  <ng-template #tmpl let-name let-location="location">
+    {{ name }}: {{ location }}
   </ng-template>
 </div>
