@@ -1,4 +1,4 @@
-import { Component, ViewChild, ViewContainerRef, ComponentFactoryResolver, AfterContentInit, ComponentRef } from '@angular/core';
+import { Component, ViewChild, ViewContainerRef, ComponentFactoryResolver, AfterContentInit, ComponentRef, TemplateRef } from '@angular/core';
 
 import { User } from './auth-form/auth-form.interface';
 
@@ -15,19 +15,15 @@ export class AppComponent implements AfterContentInit {
   
   @ViewChild('entry', { static: true, read: ViewContainerRef }) entry: ViewContainerRef;
 
+  @ViewChild('tmpl', {static: true}) tmpl: TemplateRef<any>;
+
   constructor(
     private resolver: ComponentFactoryResolver,
   ) {}
 
   ngAfterContentInit() {
-    const authFormFactory = this.resolver.resolveComponentFactory(AuthFormComponent);
-    this.entry.createComponent(authFormFactory);
-    this.component = this.entry.createComponent(authFormFactory, 0);
-    // console.log(component.instance);
-    this.component.instance.title = 'Create account';
+    this.entry.createEmbeddedView(this.tmpl);
     
-    // component.instance.submitted.subscribe((data: User) => this.loginUser(data)); // way 1
-    this.component.instance.submitted.subscribe(this.loginUser); // the same as way 1
   }
   
   destroyComponent() {
